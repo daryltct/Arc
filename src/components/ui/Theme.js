@@ -19,7 +19,8 @@ export default createMuiTheme({
 	typography: {
 		tab: {
 			fontFamily: 'Raleway',
-			fontWeight: 700
+			fontWeight: 700,
+			color: 'white'
 		},
 		estimate: {
 			fontFamily: 'Pacifico',
