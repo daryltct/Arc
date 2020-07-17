@@ -118,16 +118,16 @@ const useStyles = makeStyles((theme) => ({
 	}
 }));
 
-function Header() {
+function Header(props) {
 	const classes = useStyles();
 	const theme = useTheme();
 	const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent); //for SwipeableDrawer
 	const matches = useMediaQuery(theme.breakpoints.down('md'));
 
-	const [ value, setValue ] = useState(0); //used to manage which tab is open
+	const { value, setValue, selectedIndex, setSelectedIndex } = props;
 	const [ anchorEl, setAnchorEl ] = useState(null); //used to manage menu dropdown (services tab)
 	const [ openMenu, setOpenMenu ] = useState(false); //whether menu is open or not
-	const [ selectedIndex, setSelectedIndex ] = useState(0); //which menu item is selected
+
 	const [ openDrawer, setOpenDrawer ] = useState(false);
 
 	const handleChange = (e, newValue) => {
