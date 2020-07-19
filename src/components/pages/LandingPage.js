@@ -9,6 +9,8 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import animationData from '../../animations/landinganimation/data';
 import customSoftwareIcon from '../../assets/Custom Software Icon.svg';
+import mobileAppsIcon from '../../assets/mobileIcon.svg';
+import websiteIcon from '../../assets/websiteIcon.svg';
 
 const useStyles = makeStyles((theme) => ({
 	animation: {
@@ -125,7 +127,7 @@ function LandingPage() {
 					</Grid>
 				</Grid>
 			</Grid>
-			{/* Services Block */}
+			{/* Services Block - Custom Software Development */}
 			<Grid item>
 				<Grid container className={classes.servicesContainer} justify={isSmall ? 'center' : undefined}>
 					<Grid item style={{ marginLeft: isSmall ? 0 : '5em', textAlign: isSmall ? 'center' : undefined }}>
@@ -142,6 +144,45 @@ function LandingPage() {
 					</Grid>
 					<Grid item>
 						<img className={classes.icon} alt="custom software icon" src={customSoftwareIcon} />
+					</Grid>
+				</Grid>
+			</Grid>
+			{/* Services Block -  Mobile App Development*/}
+			<Grid item>
+				<Grid container className={classes.servicesContainer} justify={isSmall ? 'center' : 'flex-end'}>
+					<Grid item style={{ textAlign: isSmall ? 'center' : undefined }}>
+						<Typography variant="h4">Mobile App Development</Typography>
+						<Typography variant="subtitle1">
+							Extend Functionality. Extend Access. Increase Engagement
+						</Typography>
+						<Typography variant="subtitle1">
+							Integrate your web experience or create a standalone app {isSmall ? null : <br />} with
+							either mobile platform.
+						</Typography>
+						<Button variant="outlined" className={classes.learnButton}>
+							<span style={{ marginRight: 10 }}>Learn More</span>
+							<ButtonArrow width={10} height={10} fill={theme.palette.common.blue} />
+						</Button>
+					</Grid>
+					<Grid item style={{ marginRight: isSmall ? 0 : '5em' }}>
+						<img className={classes.icon} alt="mobile app icon" src={mobileAppsIcon} />
+					</Grid>
+				</Grid>
+			</Grid>
+			{/* Services Block - Website Development */}
+			<Grid item>
+				<Grid container className={classes.servicesContainer} justify={isSmall ? 'center' : undefined}>
+					<Grid item style={{ marginLeft: isSmall ? 0 : '5em', textAlign: isSmall ? 'center' : undefined }}>
+						<Typography variant="h4">Website Development</Typography>
+						<Typography variant="subtitle1">Reach More. Discover More. Sell More.</Typography>
+						<Typography variant="subtitle1">Optimized for Search Engines, built for speed.</Typography>
+						<Button variant="outlined" className={classes.learnButton}>
+							<span style={{ marginRight: 10 }}>Learn More</span>
+							<ButtonArrow width={10} height={10} fill={theme.palette.common.blue} />
+						</Button>
+					</Grid>
+					<Grid item>
+						<img className={classes.icon} alt="website icon" src={websiteIcon} />
 					</Grid>
 				</Grid>
 			</Grid>
