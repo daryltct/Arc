@@ -14,6 +14,7 @@ import customSoftwareIcon from '../../assets/Custom Software Icon.svg';
 import mobileAppsIcon from '../../assets/mobileIcon.svg';
 import websiteIcon from '../../assets/websiteIcon.svg';
 import revolutionBackground from '../../assets/repeatingBackground.svg';
+import infoBackground from '../../assets/infoBackground.svg';
 
 const useStyles = makeStyles((theme) => ({
 	animation: {
@@ -104,6 +105,14 @@ const useStyles = makeStyles((theme) => ({
 			borderRadius: 0,
 			width: '100%'
 		}
+	},
+	infoBackground: {
+		backgroundImage: `url(${infoBackground})`,
+		backgroundPosition: 'center',
+		backgroundSize: 'cover',
+		backgroundRepeat: 'no-repeat',
+		height: '100%',
+		width: '100%'
 	}
 }));
 
@@ -111,6 +120,7 @@ function LandingPage() {
 	const classes = useStyles();
 	const theme = useTheme();
 	const isSmall = useMediaQuery(theme.breakpoints.down('sm'));
+	const isExtraSmall = useMediaQuery(theme.breakpoints.down('xs'));
 
 	const defaultOptions = {
 		loop: true,
@@ -233,6 +243,68 @@ function LandingPage() {
 						</CardContent>
 					</Card>
 					<div className={classes.revolutionBackground} />
+				</Grid>
+			</Grid>
+			{/* Information Block */}
+			<Grid item>
+				<Grid container style={{ height: '80em' }} alignItems="center">
+					<Grid
+						item
+						container
+						style={{ position: 'absolute', textAlign: isExtraSmall ? 'center' : 'inherit' }}
+						direction={isExtraSmall ? 'column' : 'row'}
+						spacing={isExtraSmall ? 10 : 0}
+					>
+						<Grid item sm style={{ marginLeft: isExtraSmall ? 0 : isSmall ? '2em' : '5em' }}>
+							<Grid container direction="column">
+								<Typography variant="h2" style={{ color: 'white' }}>
+									About Us
+								</Typography>
+								<Typography variant="subtitle2">Let's get personal.</Typography>
+								<Grid item>
+									<Button
+										variant="outlined"
+										className={classes.learnButton}
+										style={{ color: 'white', borderColor: 'white' }}
+									>
+										<span style={{ marginRight: 10 }}>Learn More</span>
+										<ButtonArrow width={10} height={10} fill="white" />
+									</Button>
+								</Grid>
+							</Grid>
+						</Grid>
+						<Grid
+							item
+							sm
+							style={{
+								marginRight: isExtraSmall ? 0 : isSmall ? '2em' : '5em',
+								textAlign: isExtraSmall ? 'center' : 'right'
+							}}
+						>
+							<Grid container direction="column">
+								<Typography variant="h2" style={{ color: 'white' }}>
+									Contact Us
+								</Typography>
+								<Typography variant="subtitle2">
+									Say hello!{' '}
+									<span role="img" aria-label="waving hand">
+										👋🏻
+									</span>
+								</Typography>
+								<Grid item>
+									<Button
+										variant="outlined"
+										className={classes.learnButton}
+										style={{ color: 'white', borderColor: 'white' }}
+									>
+										<span style={{ marginRight: 10 }}>Learn More</span>
+										<ButtonArrow width={10} height={10} fill="white" />
+									</Button>
+								</Grid>
+							</Grid>
+						</Grid>
+					</Grid>
+					<div className={classes.infoBackground} />
 				</Grid>
 			</Grid>
 		</Grid>
