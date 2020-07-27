@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -41,6 +42,9 @@ const useStyles = makeStyles((theme) => ({
 		fontSize: '1.5rem',
 		marginRight: '5em',
 		marginLeft: '2em',
+		'&:hover': {
+			backgroundColor: theme.palette.secondary.light
+		},
 		[theme.breakpoints.down('sm')]: {
 			marginLeft: 0,
 			marginRight: 0
@@ -48,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
 	}
 }));
 
-function CallToAction() {
+function CallToAction({ setValue }) {
 	const classes = useStyles();
 	const theme = useTheme();
 	const isSmall = useMediaQuery(theme.breakpoints.down('sm'));
@@ -71,7 +75,13 @@ function CallToAction() {
 							Take advantage of the 21st century.
 						</Typography>
 						<Grid container item justify={isSmall ? 'center' : undefined}>
-							<Button variant="outlined" className={classes.learnButton}>
+							<Button
+								variant="outlined"
+								className={classes.learnButton}
+								component={Link}
+								to="/revolution"
+								onClick={() => setValue(2)}
+							>
 								<span style={{ marginRight: 5 }}>Learn More</span>
 								<ButtonArrow width={10} height={10} fill={theme.palette.common.blue} />
 							</Button>
@@ -80,7 +90,13 @@ function CallToAction() {
 				</Grid>
 			</Grid>
 			<Grid item>
-				<Button variant="contained" className={classes.estimateButton}>
+				<Button
+					variant="contained"
+					className={classes.estimateButton}
+					component={Link}
+					to="/estimate"
+					onClick={() => setValue(5)}
+				>
 					Free Estimate
 				</Button>
 			</Grid>

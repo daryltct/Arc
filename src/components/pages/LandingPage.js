@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Lottie from 'react-lottie';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -117,11 +118,13 @@ const useStyles = makeStyles((theme) => ({
 	}
 }));
 
-function LandingPage() {
+function LandingPage(props) {
 	const classes = useStyles();
 	const theme = useTheme();
 	const isSmall = useMediaQuery(theme.breakpoints.down('sm'));
 	const isExtraSmall = useMediaQuery(theme.breakpoints.down('xs'));
+
+	const { setValue, setSelectedIndex } = props;
 
 	const defaultOptions = {
 		loop: true,
@@ -143,12 +146,24 @@ function LandingPage() {
 						</Typography>
 						<Grid container justify="center" className={classes.buttonContainer}>
 							<Grid item>
-								<Button className={classes.estimateButton} variant="contained">
+								<Button
+									className={classes.estimateButton}
+									variant="contained"
+									component={Link}
+									to="/estimate"
+									onClick={() => setValue(5)}
+								>
 									Free Estimate
 								</Button>
 							</Grid>
 							<Grid item>
-								<Button variant="outlined" className={classes.learnButtonHero}>
+								<Button
+									variant="outlined"
+									className={classes.learnButtonHero}
+									component={Link}
+									to="/revolution"
+									onClick={() => setValue(2)}
+								>
 									<span style={{ marginRight: 10 }}>Learn More</span>{' '}
 									<ButtonArrow width={15} height={15} fill={theme.palette.common.blue} />
 								</Button>
@@ -170,7 +185,16 @@ function LandingPage() {
 							Complete digital solutions, from investigation to{' '}
 							<span className={classes.specialText}>celebration.</span>
 						</Typography>
-						<Button variant="outlined" className={classes.learnButton}>
+						<Button
+							variant="outlined"
+							className={classes.learnButton}
+							component={Link}
+							to="/customsoftware"
+							onClick={() => {
+								setValue(1);
+								setSelectedIndex(1);
+							}}
+						>
 							<span style={{ marginRight: 10 }}>Learn More</span>
 							<ButtonArrow width={10} height={10} fill={theme.palette.common.blue} />
 						</Button>
@@ -192,7 +216,16 @@ function LandingPage() {
 							Integrate your web experience or create a standalone app {isSmall ? null : <br />} with
 							either mobile platform.
 						</Typography>
-						<Button variant="outlined" className={classes.learnButton}>
+						<Button
+							variant="outlined"
+							className={classes.learnButton}
+							component={Link}
+							to="/mobileapps"
+							onClick={() => {
+								setValue(1);
+								setSelectedIndex(2);
+							}}
+						>
 							<span style={{ marginRight: 10 }}>Learn More</span>
 							<ButtonArrow width={10} height={10} fill={theme.palette.common.blue} />
 						</Button>
@@ -209,7 +242,16 @@ function LandingPage() {
 						<Typography variant="h4">Website Development</Typography>
 						<Typography variant="subtitle1">Reach More. Discover More. Sell More.</Typography>
 						<Typography variant="subtitle1">Optimized for Search Engines, built for speed.</Typography>
-						<Button variant="outlined" className={classes.learnButton}>
+						<Button
+							variant="outlined"
+							className={classes.learnButton}
+							component={Link}
+							to="/websites"
+							onClick={() => {
+								setValue(1);
+								setSelectedIndex(3);
+							}}
+						>
 							<span style={{ marginRight: 10 }}>Learn More</span>
 							<ButtonArrow width={10} height={10} fill={theme.palette.common.blue} />
 						</Button>
@@ -235,7 +277,13 @@ function LandingPage() {
 										Visionary insights coupled with cutting-edge technology is a recipe for
 										revolution
 									</Typography>
-									<Button variant="outlined" className={classes.learnButtonHero}>
+									<Button
+										variant="outlined"
+										className={classes.learnButtonHero}
+										component={Link}
+										to="/revolution"
+										onClick={() => setValue(2)}
+									>
 										<span style={{ marginRight: 10 }}>Learn More</span>{' '}
 										<ButtonArrow width={15} height={15} fill={theme.palette.common.blue} />
 									</Button>
@@ -248,16 +296,15 @@ function LandingPage() {
 			</Grid>
 			{/* Information Block */}
 			<Grid item>
-				<Grid container style={{ height: '80em' }} alignItems="center">
+				<Grid container style={{ height: '80em' }} alignItems="center" className={classes.infoBackground}>
 					<Grid
 						item
 						container
-						style={{ position: 'absolute', textAlign: isExtraSmall ? 'center' : 'inherit' }}
+						style={{ textAlign: isExtraSmall ? 'center' : 'inherit' }}
 						direction={isExtraSmall ? 'column' : 'row'}
-						spacing={isExtraSmall ? 10 : 0}
 					>
 						<Grid item sm style={{ marginLeft: isExtraSmall ? 0 : isSmall ? '2em' : '5em' }}>
-							<Grid container direction="column">
+							<Grid container direction="column" style={{ marginBottom: isExtraSmall ? '10em' : 0 }}>
 								<Typography variant="h2" style={{ color: 'white' }}>
 									About Us
 								</Typography>
@@ -267,6 +314,9 @@ function LandingPage() {
 										variant="outlined"
 										className={classes.learnButton}
 										style={{ color: 'white', borderColor: 'white' }}
+										component={Link}
+										to="/about"
+										onClick={() => setValue(3)}
 									>
 										<span style={{ marginRight: 10 }}>Learn More</span>
 										<ButtonArrow width={10} height={10} fill="white" />
@@ -297,6 +347,9 @@ function LandingPage() {
 										variant="outlined"
 										className={classes.learnButton}
 										style={{ color: 'white', borderColor: 'white' }}
+										component={Link}
+										to="/contact"
+										onClick={() => setValue(4)}
 									>
 										<span style={{ marginRight: 10 }}>Learn More</span>
 										<ButtonArrow width={10} height={10} fill="white" />
@@ -305,12 +358,11 @@ function LandingPage() {
 							</Grid>
 						</Grid>
 					</Grid>
-					<div className={classes.infoBackground} />
 				</Grid>
 			</Grid>
 			{/* Call to Action Block */}
 			<Grid item>
-				<CallToAction />
+				<CallToAction setValue={setValue} />
 			</Grid>
 		</Grid>
 	);
